@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<select v-model="status">
+  <option value="10">未付款</option>
+  <option value="20">已付款</option>
+  <option value="30">已发货</option>
+  <option value="40">已签收</option>
+</select>
+<h1>当前订单状态: {{
+  status==10?"未付款":
+  status==20?"已付款":
+  status==30?"已发货":"已签收"
+}}</h1>
+</div>
+<script>
+new Vue({
+  el:"#app", data:{status:20}
+//10-未付款; 20-已付款; 30-已发货; 40-已签收
+})
+</script>
+</body>
+</html>

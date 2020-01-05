@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--只要双向绑定表单元素的值，都用v-model。@keyup是当键盘的按键抬起后触发的事件处理函数。.13是限制只有按回车(13号)键时，才执行操作。按其他按键不执行。按下回车键时，调用和按钮相同的search()方法-->
+  <input v-model="kwords" @keyup.13="search()"><button @click="search()">搜索</button>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{ kwords:"" },
+  methods:{
+    search(){
+      console.log(`查找 "${this.kwords}" 相关的商品`);
+    }
+  },
+  watch:{//监视
+    //监视kwords的函数: 只要kwords改变，就立刻自动触发
+    kwords(){ this.search(); }
+  }
+})
+</script>
+</body>
+</html>

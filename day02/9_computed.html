@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<h2>总价:¥{{total.toFixed(2)}}</h2>
+<ul>
+  <li v-for="(p,i) of products">
+    {{i+1}} |
+    ¥{{p.price.toFixed(2)}} |
+    {{p.count}} |
+    ¥{{(p.price*p.count).toFixed(2)}} 
+  </li>
+</ul>
+<h2>总价:¥{{total.toFixed(2)}}</h2>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    products:[
+      {price:10,count:3},
+      {price:15,count:1},
+      {price:12,count:2}
+    ]
+  },
+  computed:{//computed中的计算属性，可缓存第一次计算的值反复使用，直到依赖的模型变量值发生变化，才自动更新。
+    //定义计算属性total用于自动计算商品列表中所有商品的总价
+    total(){
+      console.log("计算了一次总价！");
+      var sum=0;
+      for(var p of this.products){
+        sum+=p.price*p.count;
+      }
+      return sum;
+    }
+  },
+  methods:{//普通方法不会缓存返回值，调用几次，就重复执行计算几次。
+    getTotal(){
+      
+    }
+  }
+})
+</script>
+</body>
+</html>
