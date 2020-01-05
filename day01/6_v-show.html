@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--如果未登陆:islogin=false，就显示登陆/注册，否则，就隐藏登陆注册-->
+<h1 v-show="isLogin==false"><a href="#" @click.prevent="login()">登录</a> | <a href="javascript:;">注册</a></h1>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{ isLogin:false },
+  methods:{
+    login(/*e*/){//login:function(){
+      //e.preventDefault();
+      alert("登陆成功!");
+      this.isLogin=true;
+    }
+  }
+})
+</script>
+</body>
+</html>
