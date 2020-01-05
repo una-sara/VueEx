@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+</head>
+<body>
+  <!--3. 定义各个“页面”的子组件，每个子组件都包含2部分:<template>和<script>-->
+  <template id="tplIndex">
+    <div>
+      <h1>这里是首页</h1>
+    </div>
+  </template>
+  <script>
+    var Index={
+      template:"#tplIndex"
+    }
+  </script>
+
+  <template id="tplLogin">
+    <div>
+      用户名:<input><br>
+      密码:<input type="password"><br>
+      <button>登录</button>
+    </div>
+  </template>
+  <script>
+    var Login={
+      template:"#tplLogin"
+    }
+  </script>
+
+  <template id="tplNotFound">
+    <h1 style="color:red">404:页面不存在!</h1>
+  </template>
+  <script>
+    var NotFound={
+      template:"#tplNotFound"
+    }
+  </script>
+
+  <script>
+    //4. 定义路由
+    //4.1. 定义路由字典: 
+    var routes=[
+      {path:"/", component: Index},
+      {path:"/index", component: Index},
+      {path:"/login", component: Login},
+      {path:"/*", component:NotFound}
+    ];
+    //4.2. 创建路由器对象，装载路由字典
+    var router=new VueRouter({ routes });
+    //4.3. 将router装入new Vue()
+  </script>
+
+  <!--1. 创建唯一的完整的html页面，其中定义受Vue监控的div#app和new Vue()-->
+  <div id="app">
+    <!--2. 在html页面内，用router-view临时占位-->
+    <router-view></router-view>
+  </div>
+  <script>
+    new Vue({//负责加载页面
+      el:"#app",
+      data:{},
+      router//4.3
+    })
+  </script>
+</body>
+</html>
